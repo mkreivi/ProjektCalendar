@@ -2,7 +2,7 @@ body {
     display: flex;
     margin-top: 50px;
     justify-content: center;
-    background-color: #FFFCFF;
+    background-color: rgb(241, 209, 214);
   }
   button {
     width: 75px;
@@ -24,7 +24,7 @@ body {
     justify-content: space-between;
   }
   #header button {
-    background-color:#92a1d1;
+    background-color: rgb(114, 61, 114);
   }
   #container {
     width: 770px;
@@ -32,7 +32,7 @@ body {
   #weekdays {
     width: 100%;
     display: flex;
-    color: #247BA0;
+    color: palevioletred;
   }
   #weekdays div {
     width: 100px;
