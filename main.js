@@ -5,8 +5,22 @@ let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 const calendar = document.getElementById('calendar');
+const newEventModal = document.getElementById('newEventModal');
+const backDrop = document.getElementById('modalBackDrop');
 const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
 
+function openModal(date) {
+    clicked = date;
+
+    const eventForDay = events.find(e => e.date === clicked);
+
+    if (eventForDay) {
+        console.log('Event already exists');
+    } else {
+        newEventModal.style.display = 'block';
+    }
+    backDrop.style.display = 'block';
+}
 
 function load() {
     const dt = new Date();
@@ -42,7 +56,7 @@ function load() {
         if (i > paddingDays) {
             daySquare.innerText = i - paddingDays;
 
-            daySquare.addEventListener('click', () => console.log('click'));
+            daySquare.addEventListener('click', () => openModal(`${month + 1}/${i - paddingDays}/${year}`));
         } else {
             daySquare.classList.add('padding');
         }
@@ -50,6 +64,10 @@ function load() {
         calendar.appendChild(daySquare);
         }
 
+    }
+    function closeModal() {
+        newEventModal.style.dislay = 'none';
+        backDrop.style.display = 'none';
     }
 
     function initButtons() {
@@ -62,6 +80,10 @@ function load() {
             nav--;
             load();
         });
+
+        document.getElementById('saveButton', () => {});
+
+        document.getElementById('cancelButton', closeModal);
     }
 initButtons();
 load();
